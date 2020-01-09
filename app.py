@@ -40,7 +40,7 @@ def create_database(db, futures):
             print("Error {} for {}".format(e,fut))
     conn.commit()
     # to check everything is correct uncomment the next 3 lines
-    # c.execute("SELECT (name) FROM sqlite_master WHERE type='table';") 
+    # c.execute("SELECT COUNT(name) FROM sqlite_master WHERE type='table';") 
     # print("n tables: ", c.fetchall())
     # print("n futures: ", len(futures))
     conn.close()
