@@ -36,7 +36,7 @@ def create_database(db, futures):
     for fut in futures:
         try:
             c.execute("CREATE TABLE IF NOT EXISTS '{}' (Date DATETIME PRIMARY KEY, Open FLOAT, High FLOAT, Low FLOAT, Close FLOAT)".format(fut))
-        except Error as e:
+        except Exception as e:
             print("Error {} for {}".format(e,fut))
     conn.commit()
     # to check everything is correct uncomment the next 3 lines
@@ -57,7 +57,7 @@ def insert_data(db,futures):
                     "INSERT INTO '{}' (Date, Open, High, Low, Close) VALUES(:Date, :Open, :High, :Low, :Close)".format(fut),
                     {'Date':idx.strftime('%Y-%m-%d %H:%M:%S'),'Open':val['Open'],'High':val['High'],'Low':val['Low'],'Close':val['Settle']})
             print("Inserted data for", fut)
-        except Error as e:
+        except Exception as e:
             print(e)
     conn.commit()
     conn.close()
